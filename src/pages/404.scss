@@ -1,0 +1,12 @@
+.page-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  &__link {
+    margin-top: 3rem;
+    font-size: 0.7rem;
+  }
+}

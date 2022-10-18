@@ -1,0 +1,16 @@
+<div class="send-message">
+
+  <button class="send-message__add-any-in-message-button" type="button" data-pop-up="add-in-message">
+    {{> svg-clip }}
+  </button>
+
+  <form class="send-message__form" action="">
+    <label class="send-message__label">
+      {{> input class='send-message__input' type='text' name='message' value='' placeholder='Сообщение' required='' }}
+    </label>
+    <div class="send-message__button">
+      {{> button-arrow left='' right='true' }}
+    </div>
+  </form>
+
+</div>

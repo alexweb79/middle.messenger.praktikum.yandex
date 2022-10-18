@@ -1,0 +1,13 @@
+.page-registration {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  min-height: 100vh;
+
+  .form {
+
+    &__button {
+      margin-top: 3rem;
+    }
+  }
+}

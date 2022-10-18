@@ -1,0 +1,65 @@
+{{> header title='avatar' }}
+
+    <div class="page-profile">
+
+      <div class="page-profile__button">
+        <button type="button">
+          {{> svg-arrow }}
+        </button>
+      </div>
+
+      <div class="page-profile__data">
+        <div class="form-profile profile">
+
+          <div class="profile__avatar">
+            {{> avatar changeButton='true' }}
+          </div>
+
+          {{> title class='profile__title' text='Иван' }}
+
+          <ul class="profile__list">
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Почта' }}
+              <span class="profile__input">pochta@yandex.ru</span>
+            </li>
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Логин' }}
+              <span class="profile__input">ivanivanov</span>
+            </li>
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Имя' }}
+              <span class="profile__input">Иван</span>
+            </li>
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Фамилия' }}
+              <span class="profile__input">Иванов</span>
+            </li>
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Имя в чате' }}
+              <span class="profile__input">Иван</span>
+            </li>
+            <li class="profile__label">
+              {{> placeholder class='profile__input-placeholder' text='Телефон' }}
+              <span class="profile__input">+7 (909) 967 30 30</span>
+            </li>
+          </ul>
+
+          <ul class="profile__list">
+            <li class="profile__label">
+              {{> link class='profile__link link link-primary' href='profile-change-data.hbs' text='Изменить данные' }}
+            </li>
+            <li class="profile__label">
+              {{> link class='profile__link link link-primary' href='password-change.hbs' text='Изменить пароль' }}
+            </li>
+            <li class="profile__label">
+              {{> link class='profile__link link link-danger' href='login.hbs' text='Выйти' }}
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+{{> footer }}
