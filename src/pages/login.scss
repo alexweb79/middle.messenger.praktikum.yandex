@@ -1,0 +1,94 @@
+.page-login {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  min-height: 100vh;
+
+  .form {
+    &__button {
+      margin-top: 8rem;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: auto;
+  padding: 50px 30px 30px;
+  max-width: 340px;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+
+  &__title {
+    margin: auto;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+
+  &__input {
+    padding: 7px 0;
+    border: none;
+    border-bottom: 1px solid $color-primary;
+
+    &-placeholder {
+      position: absolute;
+      top: 7px;
+      font-size: 13px;
+      color: $color-light;
+      transition: $transition-default;
+    }
+
+    &-error {
+      display: none;
+      margin-top: 5px;
+      font-size: 8px;
+      color: $color-danger;
+    }
+
+    &:focus + .form__input-placeholder,
+    &:not(:placeholder-shown) + .form__input-placeholder {
+      top: -10px;
+      font-size: 9px;
+    }
+
+    &:invalid + .form__input-error {
+      display: block;
+    }
+  }
+
+  &__link {
+    margin: 1rem auto 0;
+    font-size: 0.7rem;
+  }
+}
+
+.button {
+  width: max-content;
+  margin: auto;
+  padding: 12px 48px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: $transition-default;
+
+  &-primary {
+    color: #ffffff;
+    background-color: $color-primary;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,172 @@
+.page-profile {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  min-height: 100vh;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    min-height: 100vh;
+    background-color: #FBFBFB;
+  }
+
+  &__data {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    flex: 1;
+  }
+}
+
+.button-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: $color-primary;
+  border: none;
+  border-radius: 50%;
+  transition: $transition-default;
+
+  &-left {
+    svg {
+      transform: rotate(0);
+    }
+  }
+
+  &-right {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  max-width: 500px;
+  margin: auto;
+
+  &__avatar {
+
+  }
+
+  &__title {
+    margin: 10px auto 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__list {
+    margin-top: 40px;
+  }
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+    font-size: 13px;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__input {
+    border: none;
+    color: $color-light;
+    text-align: right;
+  }
+
+  &__input-placeholder {
+    color: $color-dark;
+  }
+
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: #EFEFEF;
+  overflow: hidden;
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    color: #FFFFFF;
+    opacity: 0;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      background-color: #000000;
+      opacity: 0;
+      transition: $transition-default;
+    }
+  }
+
+  &:hover {
+    .avatar__button {
+      opacity: 1;
+      &:before {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.link {
+  font-size: 13px;
+  text-decoration: none;
+  transition: $transition-default;
+
+  &-primary {
+    color: $color-primary;
+  }
+
+  &-danger {
+    color: $color-danger;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

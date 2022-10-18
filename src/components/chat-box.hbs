@@ -1,0 +1,36 @@
+<div class="box">
+
+  <time class="box__date">19 июня</time>
+
+  <div class="box__message">
+    {{> chat-box-message
+        message-left='true'
+        paragraph-1='Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.'
+        paragraph-2='Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.'
+        message-date='11:56'
+    }}
+  </div>
+
+  <div class="box__message">
+    {{> chat-box-message
+        message-left='true'
+        image-src='../../static/camera.jpg'
+        image-alt='Фото камера'
+        message-date='11:56'
+    }}
+  </div>
+
+  <div class="box__message">
+    {{> chat-box-message
+        message-right='true'
+        message-secondary='true'
+        paragraph-1='Круто!'
+        message-date='12:00'
+    }}
+  </div>
+
+  {{> pop-up-action-user }}
+
+  {{> pop-up-add-in-message }}
+
+</div>

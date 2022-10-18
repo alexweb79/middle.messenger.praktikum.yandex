@@ -1,0 +1,42 @@
+{{> header title='chat' }}
+
+    <div class="page-chat">
+
+      <div class="page-chat__chat-list">
+        <div class="chat-list">
+
+          {{> chat-profile-link }}
+
+          {{> chat-search }}
+
+          {{> chat-list }}
+
+        </div>
+      </div>
+
+      <div class="page-chat__chat">
+        <div class="chat">
+
+          <div class="chat__info">
+            {{> chat-info name='Вадим' }}
+          </div>
+
+          <div class="chat__box">
+            {{> chat-box }}
+          </div>
+
+          <div class="chat__send-message">
+            {{> chat-send-message }}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script type="module">
+      import togglePopUp from '../utils/mydash/togglePopUp.js';
+      togglePopUp();
+    </script>
+
+{{> footer }}

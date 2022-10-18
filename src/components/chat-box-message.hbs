@@ -1,0 +1,17 @@
+<div class="message{{#if message-right }} message-right{{/if}}{{#if message-left }} message-left{{/if}}{{# if message-secondary }} message-secondary{{/if}}{{#if image-src }} message-image{{/if}}">
+  {{#if paragraph-1 }}<p>{{ paragraph-1 }}</p>{{/if}}
+  {{#if paragraph-2 }}<p>{{ paragraph-2 }}</p>{{/if}}
+  {{#if image-src }}
+    <img src="{{ image-src }}" alt="{{ image-alt }}">
+  {{/if}}
+  {{#if message-date }}
+    <div class="message__info">
+      {{# if message-secondary }}
+        <div class="message__check message__check-delivery">
+          {{> svg-check }}
+        </div>
+      {{/if}}
+      <time class="message__date">{{ message-date }}</time>
+    </div>
+  {{/if}}
+</div>

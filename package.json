@@ -1,0 +1,27 @@
+{
+  "name": "messenger-yp",
+  "version": "1.0.0",
+  "description": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "dev": "parcel src/pages/*.hbs --port 3000 --no-cache",
+    "build": "parcel build src/pages/*.hbs",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Aleksandr Smirnov <alexweb1979@gmail.com>",
+  "license": "ISC",
+  "staticFiles": {
+    "staticPath": "static"
+  },
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/transformer-sass": "2.7.0",
+    "eslint": "8.25.0",
+    "parcel": "2.7.0",
+    "parcel-reporter-static-files-copy": "1.4.0"
+  },
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}

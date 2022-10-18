@@ -1,0 +1,16 @@
+.fleet
+.idea
+.cache
+.parcel-cache
+node_modules
+dist
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
