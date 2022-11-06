@@ -1,4 +1,4 @@
-# Messenger-yp
+# middle.messenger.praktikum.yandex
 
 Приложение для обмена мгновенными сообщениями .
 
