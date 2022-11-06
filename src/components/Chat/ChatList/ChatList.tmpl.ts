@@ -1,0 +1,21 @@
+// language=hbs
+const chatListTmpl = `
+  <div class="chat-items">
+    {{#each chats}}
+      <div class="chat-items__chat-item">
+        <div class="chat-item">
+          <div class="chat-item__col-left">
+            <div class="chat-item__avatar"></div>
+          </div>
+          <div class="chat-item__col-right">
+            <div class="chat-item__name">{{ name }}</div>
+            <time class="chat-item__date">{{ date }}</time>
+            <div class="chat-item__message">{{#if me}}<strong>Вы:</strong> {{/if}}{{ message }}</div>
+            {{#if count}}<div class="chat-item__message-count">{{ count }}</div>{{/if}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+`;
+export default chatListTmpl;

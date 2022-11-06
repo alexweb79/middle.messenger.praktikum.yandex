@@ -4,5 +4,8 @@
     "*.hbs": ["@anikin/parcel-transformer-handlebars"],
     "*.scss": ["@parcel/transformer-sass"]
   },
-  "reporters": ["parcel-reporter-static-files-copy", "..."]
+  "reporters": ["parcel-reporter-static-files-copy", "..."],
+  //"validators": {
+  //  "*.{ts,tsx}": ["@parcel/validator-typescript"]
+  //}
 }
