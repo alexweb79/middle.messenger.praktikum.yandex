@@ -2,15 +2,15 @@
 const popUpAddInMessageTmpl = `
   <button class="pop-up__button" type="button">
     {{{ svg-image }}}
-    <span>Фото или Видео</span>
+    <span class="pop-up__button-text">Фото или Видео</span>
   </button>
   <button class="pop-up__button" type="button">
     {{{ svg-file }}}
-    <span>Файл</span>
+    <span class="pop-up__button-text">Файл</span>
   </button>
   <button class="pop-up__button" type="button">
     {{{ svg-location }}}
-    <span>Локация</span>
+    <span class="pop-up__button-text">Локация</span>
   </button>
 `;
 export default popUpAddInMessageTmpl;

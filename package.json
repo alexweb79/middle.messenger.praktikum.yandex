@@ -6,14 +6,16 @@
   "scripts": {
     "dev": "parcel src/index.html --dist-dir dist --port 3000 --no-cache",
     "build": "parcel build",
-    "start": "parcel src/index.html --dist-dir dist --port 3000",
+    "start": "node server.js --port 3000",
     "eslint": "eslint . --ext .ts",
     "eslintfix": "eslint . --ext .ts --fix",
     "stylelint": "stylelint \"**/*.scss\"",
-    "stylelintfix": "stylelint \"**/*.scss\" --fix",
-    "server": "node server.js"
+    "stylelintfix": "stylelint \"**/*.scss\" --fix"
   },
   "main": "index.js",
+  "@parcel/bundler-default": {
+    "minBundles": 10
+  },
   "keywords": [],
   "author": "Aleksandr Smirnov <alexweb1979@gmail.com>",
   "license": "ISC",

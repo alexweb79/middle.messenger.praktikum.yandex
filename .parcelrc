@@ -5,7 +5,7 @@
     "*.scss": ["@parcel/transformer-sass"]
   },
   "reporters": ["parcel-reporter-static-files-copy", "..."],
-  //"validators": {
-  //  "*.{ts,tsx}": ["@parcel/validator-typescript"]
-  //}
+  "validators": {
+    "*.{ts,tsx}": ["@parcel/validator-typescript"]
+  }
 }

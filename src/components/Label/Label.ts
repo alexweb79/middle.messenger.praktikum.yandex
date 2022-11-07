@@ -1,7 +1,7 @@
-import Block from '../../services/Block';
+import { Block, Props } from '../../services/Block';
 import labelTmpl from './Label.tmpl';
 
-export default class Label extends Block {
+export class Label extends Block {
   render() {
     return this.compile(labelTmpl);
   }
@@ -72,7 +72,7 @@ export default class Label extends Block {
     return message !== '';
   }
 
-  validate(target) {
+  validate(target: Props) {
     if (target.required && !target.value) {
       target.dataset.noValidate = '';
     } else {
@@ -124,8 +124,8 @@ export default class Label extends Block {
 
   addEvents() {
     this._element.querySelectorAll('input').forEach((input: HTMLInputElement) => {
-      input.addEventListener('blur', this._props.events.blur);
-      input.addEventListener('focus', this._props.events.blur);
+      input.addEventListener('blur', (<Props>this)._props.events.blur);
+      input.addEventListener('focus', (<Props>this)._props.events.blur);
     });
     super.addEvents();
   }

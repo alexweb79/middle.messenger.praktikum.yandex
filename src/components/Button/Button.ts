@@ -1,13 +1,13 @@
-import Block from '../../services/Block';
+import {Block, Props} from '../../services/Block';
 import buttonTmpl from './Button.tmpl';
 
-export default class Button extends Block {
+export class Button extends Block {
   render() {
     return this.compile(buttonTmpl);
   }
 
   sendForm() {
-    const sendForm = {};
+    const sendForm: Props = {};
     let formValidate = true;
     const inputs = document.querySelectorAll('input');
     inputs.forEach((input: HTMLInputElement) => {
@@ -25,7 +25,7 @@ export default class Button extends Block {
 
   addEvents() {
     this._element.querySelectorAll('button').forEach((button: HTMLElement) => {
-      button.addEventListener('click', this._props.events.click);
+      button.addEventListener('click', (<Props>this)._props.events.click);
     });
     super.addEvents();
   }

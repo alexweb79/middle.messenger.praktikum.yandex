@@ -1,4 +1,4 @@
-export default class EventBus {
+export class EventBus {
   public listeners: any;
 
   constructor() {

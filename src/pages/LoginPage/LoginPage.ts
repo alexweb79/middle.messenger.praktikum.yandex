@@ -1,7 +1,7 @@
-import Block from '../../services/Block';
+import {Block} from '../../services/Block';
 import loginPageTmpl from './LoginPage.tmpl';
 
-export default class LoginPage extends Block {
+export class LoginPage extends Block {
   render() {
     return this.compile(loginPageTmpl);
   }

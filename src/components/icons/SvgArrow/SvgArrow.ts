@@ -1,7 +1,7 @@
-import Block from '../../../services/Block';
+import {Block} from '../../../services/Block';
 import svgArrowTmpl from './SvgArrow.tmpl';
 
-export default class SvgArrow extends Block {
+export class SvgArrow extends Block {
   render() {
     return this.compile(svgArrowTmpl);
   }

@@ -37,7 +37,7 @@
       color: $color-light;
       transition: $transition-default;
 
-      svg {
+      .svg-arrow-seagull {
         margin-left: 5px;
 
         path {
@@ -48,7 +48,7 @@
       &:hover {
         color: $color-dark;
 
-        svg {
+        .svg-arrow-seagull {
           path {
             stroke: $color-dark;
           }
@@ -87,7 +87,7 @@
           left: 10px;
           transform: translateX(0);
 
-          span {
+          .chat-search__placeholder-text {
             display: none;
           }
         }
@@ -106,7 +106,7 @@
         cursor: pointer;
         transition: $transition-default;
 
-        svg {
+        .svg-lupe {
           margin-right: 5px;
         }
       }
@@ -180,7 +180,8 @@
             font-weight: 500;
             color: $color-light;
 
-            strong {
+            .chat-item__message-bold {
+              font-weight: bold;
               color: $color-dark;
             }
           }
@@ -265,7 +266,7 @@
         height: 25px;
         border-radius: 50%;
 
-        svg {
+        .svg-elipsis {
           circle {
             fill: $color-primary;
           }
@@ -365,14 +366,14 @@
           }
 
           &__check {
-            svg {
+            .svg-check {
               line {
                 stroke: $color-light;
               }
             }
 
             &-delivery {
-              svg {
+              .svg-check {
                 line {
                   stroke: $color-primary;
                 }
@@ -409,7 +410,7 @@
         padding: 0;
         border-radius: 50%;
 
-        svg {
+        .svg-clip {
           path {
             fill: $color-primary;
           }
@@ -493,7 +494,7 @@
     align-items: center;
     margin: 7px 0;
 
-    svg {
+    .svg {
       margin-right: 15px;
 
       path {
@@ -509,7 +510,7 @@
       }
     }
 
-    span {
+    .pop-up__button-text {
       font-size: 12px;
       line-height: 14px;
       font-weight: 500;
