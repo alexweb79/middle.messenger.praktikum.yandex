@@ -1,7 +1,14 @@
+// @ts-ignore
 import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import { EventBus } from './EventBus';
 
-export default class Block {
+export interface Props {
+  [key: string]: any;
+  tagName?: string;
+  events?: { [eventName: string]: EventListener };
+}
+
+export class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -9,21 +16,21 @@ export default class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  _eventBus;
+  protected _eventBus;
 
-  _id;
+  protected _id;
 
-  _element: HTMLElement | Element;
+  protected _element: HTMLElement | Element;
 
-  _props;
+  protected _meta;
 
-  _meta;
+  protected _setUpdate = false;
 
-  _children;
+  public _props: Props;
 
-  _setUpdate = false;
+  public _children;
 
-  constructor(tagName = 'div', propsAndChild: object = {}) {
+  public constructor(tagName: string = 'div', propsAndChild: Props) {
     const { children, props } = this.getChildren(propsAndChild);
 
     this._eventBus = new EventBus();
@@ -42,7 +49,7 @@ export default class Block {
     this._eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  protected _createResources() {
     const { tagName } = this._meta;
     this._element = this.createDocumentElement(tagName);
   }
@@ -56,13 +63,13 @@ export default class Block {
     let element;
     element = document.createElement(tagName);
     if (this._props.__id) {
-      element.setAttribute('data-id', this._id);
+      element.setAttribute('data-id', this._id.toString());
     }
     return element;
   }
 
-  _render() {
-    const block = this.render();
+  protected _render() {
+    const block: Node = this.render();
     this.removeEvents();
     this._element.innerHTML = '';
     this._element.appendChild(block);
@@ -70,7 +77,10 @@ export default class Block {
     this.addAttribute();
   }
 
-  render() {}
+  render() {
+    const template = '';
+    return this.compile(template, this._props);
+  }
 
   addEvents() {
     const { events = {} } = this._props;
@@ -88,14 +98,14 @@ export default class Block {
 
   addAttribute() {
     const { attr = {} } = this._props;
-    Object.entries(attr).forEach(([key, value]) => {
+    (<any>Object).entries(attr).forEach(([key, value]: any) => {
       this._element.setAttribute(key, value);
     });
   }
 
-  getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  getChildren(propsAndChildren: Props) {
+    const children: Props = {};
+    const props: Props = {};
 
     Object.keys(propsAndChildren).forEach((key) => {
       if (propsAndChildren[key] instanceof Block) {
@@ -108,21 +118,23 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template: string, props:object = this._props) {
+  compile(template: string, props: Props = this._props) {
     if (typeof (props) === 'undefined') {
       props = this._props;
     }
 
-    const propsAndStubs = { ...props };
+    const propsAndStubs: Props = { ...props };
 
-    Object.entries(this._children).forEach(([key, child]) => {
+    (<any>Object).entries(this._children).forEach(([key, child]: any) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
     const fragment = this.createDocumentElement('template');
+
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
-    Object.values(this._children).forEach((child) => {
+    (<any>Object).values(this._children).forEach((child: any) => {
+      // @ts-ignore
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
       if (stub) {
         const childContent = child.getContent();
@@ -130,26 +142,27 @@ export default class Block {
       }
     });
 
+    // @ts-ignore
     return fragment.content;
   }
 
-  _componentDidMount() {
+  protected _componentDidMount():void {
     this.componentDidMount();
-    Object.values(this._children).forEach((child) => {
+    (<any>Object).values(this._children).forEach((child: any) => {
       child.dispatchComponentDidMount();
     });
   }
 
   componentDidMount() {}
 
-  dispatchComponentDidMount() {
+  dispatchComponentDidMount():void {
     this._eventBus.emit(Block.EVENTS.FLOW_CDM);
     if (Object.keys(this._children).length) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  _componentDidUpdate(oldProps: object, newProps: object) {
+  protected _componentDidUpdate(oldProps: object, newProps: object) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -157,8 +170,11 @@ export default class Block {
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidUpdate(oldProps: object, newProps: object) {
-    return true;
+  componentDidUpdate(oldProps: Props, newProps: Props) {
+    if (oldProps !== newProps) {
+      return true;
+    }
+    return false;
   }
 
   setProps(nextProps: object) {
@@ -169,12 +185,12 @@ export default class Block {
     this._setUpdate = false;
     const { children, props } = this.getChildren(nextProps);
 
-    if (Object.values(children).length) {
-      Object.assign(this._children, children);
+    if ((<any>Object).values(children).length) {
+      (<any>Object).assign(this._children, children);
     }
 
-    if (Object.values(props).length) {
-      Object.assign(this._props, props);
+    if ((<any>Object).values(props).length) {
+      (<any>Object).assign(this._props, props);
     }
 
     if (this._setUpdate) {
@@ -183,15 +199,16 @@ export default class Block {
     }
   }
 
-  makePropsProxy(props) {
+  makePropsProxy(props: Props) {
+    // @ts-ignore
     return new Proxy(props, {
 
-      get(target, prop) {
+      get(target: Props, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
 
-      set(target, prop, value) {
+      set(target: Props, prop: string, value: any) {
         target[prop] = value;
         this._eventBus.emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
@@ -201,11 +218,11 @@ export default class Block {
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    (<HTMLElement>this.getContent()).style.display = 'block';
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    (<HTMLElement>this.getContent()).style.display = 'none';
   }
 
   getContent() {

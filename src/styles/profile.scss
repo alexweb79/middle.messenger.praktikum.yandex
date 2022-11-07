@@ -33,13 +33,13 @@
   transition: $transition-default;
 
   &-left {
-    svg {
+    .svg-arrow {
       transform: rotate(0);
     }
   }
 
   &-right {
-    svg {
+    .svg-arrow {
       transform: rotate(180deg);
     }
   }

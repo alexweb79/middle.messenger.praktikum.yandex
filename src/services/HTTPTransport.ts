@@ -1,40 +1,52 @@
-enum METHOD {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE'
+enum Method {
+  Get = 'GET',
+  Post = 'POST',
+  Put = 'PUT',
+  Delete = 'DELETE'
+}
+
+interface Headers {
+  [key: string]: string;
 }
 
 type Options = {
-  method: METHOD;
+  method: Method;
   data?: any;
+  headers?: Headers;
+  timeout?: number;
 };
 
-type OptionsWithoutMethod = { data?: any };
+type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-class HTTPTransport {
+export class HTTPTransport {
   get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.GET });
+    return this.request(url, { ...options, method: Method.Get }, options.timeout);
   }
 
   post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.POST });
+    return this.request(url, { ...options, method: Method.Post }, options.timeout);
   }
 
   put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.PUT });
+    return this.request(url, { ...options, method: Method.Put }, options.timeout);
   }
 
   delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: METHOD.DELETE });
+    return this.request(url, { ...options, method: Method.Delete }, options.timeout);
   }
 
-  request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
-    const { method, data } = options;
+  request(url: string, options: Options = { method: Method.Get }, timeout: number = 500): Promise<XMLHttpRequest> {
+    const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
+
+      if (headers) {
+        Object.keys(headers).forEach(key => {
+          xhr.setRequestHeader(key, headers[key]);
+        });
+      }
 
       xhr.onload = function () {
         resolve(xhr);
@@ -43,11 +55,12 @@ class HTTPTransport {
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+      xhr.timeout = timeout;
 
-      if (method === METHOD.GET || !data) {
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   }

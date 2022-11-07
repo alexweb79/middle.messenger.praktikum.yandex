@@ -5,7 +5,7 @@ const chatSearchTmpl = `
       {{{ input }}}
       <span class="chat-search__placeholder">
         {{{ svg-lupe }}}
-        <span>Поиск</span>
+        <span class="chat-search__placeholder-text">Поиск</span>
       </span>
     </label>
   </form>

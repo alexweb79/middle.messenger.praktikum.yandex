@@ -8,7 +8,7 @@ const chatTmpl = `
       <div class="chat-item__col-right">
         <div class="chat-item__name">{{ name }}</div>
         <time class="chat-item__date">{{ date }}</time>
-        <div class="chat-item__message">{{#if me}}<strong>Вы:</strong> {{/if}}{{ message }}</div>
+        <div class="chat-item__message">{{#if me}}<span class="chat-item__message-bold">Вы:</span> {{/if}}{{ message }}</div>
         {{#if count}}<div class="chat-item__message-count">{{ count }}</div>{{/if}}
       </div>
     </div>

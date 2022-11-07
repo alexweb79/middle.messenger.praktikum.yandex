@@ -1,40 +1,40 @@
-import SvgArrow from './components/icons/SvgArrow/SvgArrow';
-import SvgNoAvatar from './components/icons/SvgNoAvatar/SvgNoAvatar';
-import SvgArrowSeagull from './components/icons/SvgArrowSeagull/SvgArrowSeagull';
-import SvgLupe from './components/icons/SvgLupe/SvgLupe';
-import SvgElipsis from './components/icons/SvgElipsis/SvgElipsis';
-import SvgCheck from './components/icons/SvgCheck/SvgCheck';
-import SvgAroundPlus from './components/icons/SvgAroundPlus/SvgAroundPlus';
-import SvgAroundX from './components/icons/SvgAroundX/SvgAroundX';
-import SvgFile from './components/icons/SvgFile/SvgFile';
-import SvgImage from './components/icons/SvgImage/SvgImage';
-import SvgLocation from './components/icons/SvgLocation/SvgLocation';
-import SvgClip from './components/icons/SvgClip/SvgClip';
-import Link from './components/Link/Link';
-import Button from './components/Button/Button';
-import ButtonArrow from './components/ButtonArrow/ButtonArrow';
-import Input from './components/Input/Input';
-import Label from './components/Label/Label';
-import Avatar from './components/Avatar/Avatar';
-import ChatProfileLink from './components/Chat/ChatProfileLink/ChatProfileLink';
-import ChatSearch from './components/Chat/ChatSearch/ChatSearch';
-import ChatList from './components/Chat/ChatList/ChatList';
-import ChatInfo from './components/Chat/ChatInfo/ChatInfo';
-import ChatBox from './components/Chat/ChatBox/ChatBox';
-import ChatSendMessage from './components/Chat/ChatSendMessage/ChatSendMessage';
-import PopUpActionUser from './components/PopUp/PopUpActionUser/PopUpActionUser';
-import PopUpAddInMessage from './components/PopUp/PopUpAddInMessage/PopUpAddInMessage';
-import IndexPage from './pages/IndexPage/IndexPage';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import AvatarPage from './pages/AvatarPage/AvatarPage';
-import ChatPage from './pages/ChatPage/ChatPage';
-import ChatSelectPage from './pages/ChatSelectPage/ChatSelectPage';
-import DefaultLayout from './layout/DefaultLayout/DefaultLayout';
-import LoginPage from './pages/LoginPage/LoginPage';
-import PasswordChangePage from './pages/PasswordChangePage/PasswordChangePage';
-import ProfileChangeDataPage from './pages/ProfileChangeDataPage/ProfileChangeDataPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
+import {SvgArrow} from './components/icons/SvgArrow/SvgArrow';
+import {SvgNoAvatar} from './components/icons/SvgNoAvatar/SvgNoAvatar';
+import {SvgArrowSeagull} from './components/icons/SvgArrowSeagull/SvgArrowSeagull';
+import {SvgLupe} from './components/icons/SvgLupe/SvgLupe';
+import {SvgElipsis} from './components/icons/SvgElipsis/SvgElipsis';
+import {SvgCheck} from './components/icons/SvgCheck/SvgCheck';
+import {SvgAroundPlus} from './components/icons/SvgAroundPlus/SvgAroundPlus';
+import {SvgAroundX} from './components/icons/SvgAroundX/SvgAroundX';
+import {SvgFile} from './components/icons/SvgFile/SvgFile';
+import {SvgImage} from './components/icons/SvgImage/SvgImage';
+import {SvgLocation} from './components/icons/SvgLocation/SvgLocation';
+import {SvgClip} from './components/icons/SvgClip/SvgClip';
+import {Link} from './components/Link/Link';
+import {Button} from './components/Button/Button';
+import {ButtonArrow} from './components/ButtonArrow/ButtonArrow';
+import {Input} from './components/Input/Input';
+import {Label} from './components/Label/Label';
+import {Avatar} from './components/Avatar/Avatar';
+import {ChatProfileLink} from './components/Chat/ChatProfileLink/ChatProfileLink';
+import {ChatSearch} from './components/Chat/ChatSearch/ChatSearch';
+import {ChatList} from './components/Chat/ChatList/ChatList';
+import {ChatInfo} from './components/Chat/ChatInfo/ChatInfo';
+import {ChatBox} from './components/Chat/ChatBox/ChatBox';
+import {ChatSendMessage} from './components/Chat/ChatSendMessage/ChatSendMessage';
+import {PopUpActionUser} from './components/PopUp/PopUpActionUser/PopUpActionUser';
+import {PopUpAddInMessage} from './components/PopUp/PopUpAddInMessage/PopUpAddInMessage';
+import {IndexPage} from './pages/IndexPage/IndexPage';
+import {ErrorPage} from './pages/ErrorPage/ErrorPage';
+import {AvatarPage} from './pages/AvatarPage/AvatarPage';
+import {ChatPage} from './pages/ChatPage/ChatPage';
+import {ChatSelectPage} from './pages/ChatSelectPage/ChatSelectPage';
+import {DefaultLayout} from './layout/DefaultLayout/DefaultLayout';
+import {LoginPage} from './pages/LoginPage/LoginPage';
+import {PasswordChangePage} from './pages/PasswordChangePage/PasswordChangePage';
+import {ProfileChangeDataPage} from './pages/ProfileChangeDataPage/ProfileChangeDataPage';
+import {ProfilePage} from './pages/ProfilePage/ProfilePage';
+import {RegistrationPage} from './pages/RegistrationPage/RegistrationPage';
 
 const domain = window.location.origin;
 
@@ -255,7 +255,9 @@ const chatSendMessage = new ChatSendMessage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -319,7 +321,9 @@ const loginPage = new LoginPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -340,7 +344,9 @@ const loginPage = new LoginPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -381,7 +387,9 @@ const passwordChangePage = new PasswordChangePage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -422,7 +430,9 @@ const passwordChangePage = new PasswordChangePage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -533,7 +543,9 @@ const profileChangeDataPage = new ProfileChangeDataPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -554,7 +566,9 @@ const profileChangeDataPage = new ProfileChangeDataPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -575,7 +589,9 @@ const profileChangeDataPage = new ProfileChangeDataPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -596,7 +612,9 @@ const profileChangeDataPage = new ProfileChangeDataPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -636,7 +654,9 @@ const profileChangeDataPage = new ProfileChangeDataPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -672,8 +692,12 @@ const registrationPage = new RegistrationPage(
         errorText: 'ошибка',
         events: {
           blur: (e: Event) => {
+            const t = e.target;
             e.preventDefault();
             e.stopPropagation();
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -694,7 +718,9 @@ const registrationPage = new RegistrationPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -715,7 +741,9 @@ const registrationPage = new RegistrationPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -736,7 +764,9 @@ const registrationPage = new RegistrationPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -757,7 +787,9 @@ const registrationPage = new RegistrationPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -778,7 +810,9 @@ const registrationPage = new RegistrationPage(
             const t = e.target;
             e.preventDefault();
             e.stopPropagation();
-            label.validate(t);
+            if (t) {
+              label.validate(t);
+            }
           },
         },
       },
@@ -826,6 +860,24 @@ const defaultLayout = new DefaultLayout(
   },
 );
 
+declare global {
+  interface Window {
+    button?: any;
+    indexPage?: any;
+    notFoundPage?: any;
+    serverErrorPage?: any;
+    avatarPage?: any;
+    chatPage?: any;
+    chatSelectPage?: any;
+    loginPage?: any;
+    passwordChangePage?: any;
+    profilePage?: any;
+    profileChangeDataPage?: any;
+    registrationPage?: any;
+    defaultLayout?: any;
+  }
+}
+
 window.button = button;
 window.indexPage = indexPage;
 window.notFoundPage = notFoundPage;
@@ -850,38 +902,41 @@ window.defaultLayout = defaultLayout;
 //   defaultLayout.setProps({ page: newPage });
 // }
 
-const root: HTMLElement = document.getElementById('root');
+const root = document.getElementById('root');
 
-if (window.location.pathname === '/') {
-  root.prepend(indexPage.getContent());
+if (root) {
+  if (window.location.pathname === '/') {
+    root.prepend(indexPage.getContent());
+  }
+  if (window.location.pathname === '/404/') {
+    root.prepend(notFoundPage.getContent());
+  }
+  if (window.location.pathname === '/500/') {
+    root.prepend(serverErrorPage.getContent());
+  }
+  if (window.location.pathname === '/avatar/') {
+    root.prepend(avatarPage.getContent());
+  }
+  if (window.location.pathname === '/chat/') {
+    root.prepend(chatPage.getContent());
+  }
+  if (window.location.pathname === '/chat-select/') {
+    root.prepend(chatSelectPage.getContent());
+  }
+  if (window.location.pathname === '/login/') {
+    root.prepend(loginPage.getContent());
+  }
+  if (window.location.pathname === '/password-change/') {
+    root.prepend(passwordChangePage.getContent());
+  }
+  if (window.location.pathname === '/profile/') {
+    root.prepend(profilePage.getContent());
+  }
+  if (window.location.pathname === '/profile-change-data/') {
+    root.prepend(profileChangeDataPage.getContent());
+  }
+  if (window.location.pathname === '/registration/') {
+    root.prepend(registrationPage.getContent());
+  }
 }
-if (window.location.pathname === '/404/') {
-  root.prepend(notFoundPage.getContent());
-}
-if (window.location.pathname === '/500/') {
-  root.prepend(serverErrorPage.getContent());
-}
-if (window.location.pathname === '/avatar/') {
-  root.prepend(avatarPage.getContent());
-}
-if (window.location.pathname === '/chat/') {
-  root.prepend(chatPage.getContent());
-}
-if (window.location.pathname === '/chat-select/') {
-  root.prepend(chatSelectPage.getContent());
-}
-if (window.location.pathname === '/login/') {
-  root.prepend(loginPage.getContent());
-}
-if (window.location.pathname === '/password-change/') {
-  root.prepend(passwordChangePage.getContent());
-}
-if (window.location.pathname === '/profile/') {
-  root.prepend(profilePage.getContent());
-}
-if (window.location.pathname === '/profile-change-data/') {
-  root.prepend(profileChangeDataPage.getContent());
-}
-if (window.location.pathname === '/registration/') {
-  root.prepend(registrationPage.getContent());
-}
+
