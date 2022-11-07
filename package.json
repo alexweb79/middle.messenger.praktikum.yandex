@@ -13,9 +13,6 @@
     "stylelintfix": "stylelint \"**/*.scss\" --fix"
   },
   "main": "index.js",
-  "@parcel/bundler-default": {
-    "minBundles": 10
-  },
   "keywords": [],
   "author": "Aleksandr Smirnov <alexweb1979@gmail.com>",
   "license": "ISC",
