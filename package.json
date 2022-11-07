@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "parcel src/index.html --dist-dir dist --port 3000 --no-cache",
     "build": "parcel build",
-    "start": "node server.js --port 3000",
+    "start": "parcel src/index.html --dist-dir dist --port 3000",
     "eslint": "eslint . --ext .ts",
     "eslintfix": "eslint . --ext .ts --fix",
     "stylelint": "stylelint \"**/*.scss\"",
-    "stylelintfix": "stylelint \"**/*.scss\" --fix"
+    "stylelintfix": "stylelint \"**/*.scss\" --fix",
+    "server": "node server.js --port 3000"
   },
   "main": "index.js",
   "keywords": [],
