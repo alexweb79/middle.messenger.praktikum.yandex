@@ -6,6 +6,10 @@ export class Label extends Block {
     return this.compile(labelTmpl);
   }
 
+  hasCirLetter(str: string) {
+    return (/[а-яА-ЯЁё]/).test(str);
+  }
+
   hasCirLetters(str: string) {
     return (/[а-яА-ЯЁё]/g).test(str);
   }
@@ -42,22 +46,28 @@ export class Label extends Block {
     return (/[ `!@#$%^&*()+=\[\]{};':"\\|,.<>\/?~]/).test(str);
   }
 
+  hasSpecialCharactersWithPlus(str: string) {
+    return (/[^\+?][ `!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~]/).test(str);
+  }
+
   stringNumberToNumber(str: string, start: number, end: number) {
     return str.length >= start && str.length <= end;
   }
 
   validateName(name: string): boolean {
-    return !this.hasWhiteSpace(name) && this.hasOneLetter(name) && !this.hasSpecialCharacters(name);
+    return !this.hasWhiteSpace(name) && !this.hasNumbers(name) && !this.hasSpecialCharacters(name);
   }
 
   validateLogin(login: string): boolean {
     return this.stringNumberToNumber(login, 3, 20) && !this.hasWhiteSpace(login) && this.hasOneLetter(login) && !this.hasSpecialCharacters(login);
   }
 
+  email(email: string) {
+    return (/^[a-zA-Z\-0-9]+@+(([a-zA-Z\-]+[a-zA-Z]\.)+[a-zA-Z]{2,})$/).test(email);
+  }
+
   validateEmail(email: string) {
-    return email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
+    return this.email(email);
   }
 
   validatePassword(password: string) {
@@ -65,7 +75,7 @@ export class Label extends Block {
   }
 
   validatePhone(phone: string) {
-    return this.stringNumberToNumber(phone, 10, 15);
+    return this.hasNumbers(phone) && this.stringNumberToNumber(phone, 10, 15) && !this.hasLatLetters(phone) && !this.hasCirLetters(phone) && !this.hasSpecialCharactersWithPlus(phone);
   }
 
   validateMessage(message: string) {
