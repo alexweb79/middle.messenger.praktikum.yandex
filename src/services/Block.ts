@@ -1,6 +1,6 @@
+import { EventBus } from './EventBus';
 // @ts-ignore
 import Handlebars from 'handlebars';
-import { EventBus } from './EventBus';
 
 export interface Props {
   [key: string]: any;
