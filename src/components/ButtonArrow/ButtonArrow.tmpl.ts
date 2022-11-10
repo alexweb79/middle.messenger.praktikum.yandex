@@ -1,0 +1,7 @@
+// language=hbs
+const buttonArrowTmpl = `
+  <button class="button-arrow{{#if left }} button-arrow-left{{/if}}{{#if right }} button-arrow-right{{/if}}" type="button">
+    {{{ svg-arrow }}}
+  </button>
+`;
+export default buttonArrowTmpl;
