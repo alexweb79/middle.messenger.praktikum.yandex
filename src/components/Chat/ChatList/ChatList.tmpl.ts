@@ -2,16 +2,16 @@
 const chatListTmpl = `
   <div class="chat-items">
     {{#each chats}}
-      <div class="chat-items__chat-item">
+      <div class="chat-items__chat-item" data-id="{{ id }}" data-created-by="{{ created_by }}">
         <div class="chat-item">
           <div class="chat-item__col-left">
-            <div class="chat-item__avatar"></div>
+            <div class="chat-item__avatar">{{#if avatar}}<img src="{{ avatar }}" alt="">{{/if}}</div>
           </div>
           <div class="chat-item__col-right">
-            <div class="chat-item__name">{{ name }}</div>
-            <time class="chat-item__date">{{ date }}</time>
-            <div class="chat-item__message">{{#if me}}<strong>Вы:</strong> {{/if}}{{ message }}</div>
-            {{#if count}}<div class="chat-item__message-count">{{ count }}</div>{{/if}}
+            <div class="chat-item__name">{{ title }}</div>
+            <time class="chat-item__date">{{ last_message.time }}</time>
+            <div class="chat-item__message">{{#if me}}<strong>Вы:</strong> {{/if}}{{ last_message.content }}</div>
+            {{#if unread_count}}<div class="chat-item__message-count">{{ unread_count }}</div>{{/if}}
           </div>
         </div>
       </div>

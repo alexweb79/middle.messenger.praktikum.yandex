@@ -19,28 +19,39 @@ type Options = {
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 export class HTTPTransport {
-  get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+  static apiUrl: string = 'https://ya-praktikum.tech/api/v2';
+  protected _endPoint: string;
+
+  constructor(endPoint: string) {
+    this._endPoint = HTTPTransport.apiUrl + endPoint;
+  }
+
+  public get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.Get }, options.timeout);
   }
 
-  post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+  public post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.Post }, options.timeout);
   }
 
-  put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+  public put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.Put }, options.timeout);
   }
 
-  delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+  public delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.request(url, { ...options, method: Method.Delete }, options.timeout);
   }
 
-  request(url: string, options: Options = { method: Method.Get }, timeout: number = 500): Promise<XMLHttpRequest> {
+  private request(url: string, options: Options = { method: Method.Get }, timeout: number = 5000): Promise<XMLHttpRequest> {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, this._endPoint + url);
+
+      if (!(options.data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
 
       if (headers) {
         Object.keys(headers).forEach(key => {
@@ -56,12 +67,14 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
       xhr.timeout = timeout;
+      xhr.withCredentials = true;
 
       if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(options.data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   }
+
 }
