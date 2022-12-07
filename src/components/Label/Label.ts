@@ -2,6 +2,7 @@ import { Block, Props } from '../../services/Block';
 import labelTmpl from './Label.tmpl';
 
 export class Label extends Block {
+
   render() {
     return this.compile(labelTmpl);
   }
@@ -139,4 +140,5 @@ export class Label extends Block {
     });
     super.addEvents();
   }
+
 }

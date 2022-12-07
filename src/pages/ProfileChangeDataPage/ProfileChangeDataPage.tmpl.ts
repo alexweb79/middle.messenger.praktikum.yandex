@@ -1,6 +1,6 @@
 // language=hbs
 const profileChangeDataPageTmpl = `
-  {{{ button-arrow }}}
+  {{{ link-arrow }}}
   <div class="page-profile__data">
     <form class="form-profile profile" action="">
       <div class="profile__avatar">
@@ -20,6 +20,7 @@ const profileChangeDataPageTmpl = `
         </li>
       </ul>
     </form>
+    {{{ modal }}}
   </div>
 `;
 export default profileChangeDataPageTmpl;

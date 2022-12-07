@@ -1,4 +1,4 @@
-const togglePopUp = () => {
+export const togglePopUp = () => {
   const buttons = document.querySelectorAll('button[data-pop-up]');
   if (buttons) {
     buttons.forEach((button) => {

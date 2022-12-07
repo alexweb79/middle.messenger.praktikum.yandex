@@ -1,6 +1,6 @@
 // language=hbs
 const profilePageTmpl = `
-  {{{ button-arrow }}}
+  {{{ link-arrow }}}
   <div class="page-profile__data">
     <div class="form-profile profile">
       <div class="profile__avatar">
@@ -11,16 +11,14 @@ const profilePageTmpl = `
         {{#each items}}
           <li class="profile__label">
             <span class='profile__input-placeholder'>{{ placeholder }}</span>
-            <span class="profile__input">{{ value }}</span>
+            <span class="profile__input" data-name="{{ name }}">{{ value }}</span>
           </li>
         {{/each}}
       </ul>
       <ul class="profile__list">
-        {{#each links}}
-          <li class="profile__label">
-              <a class="profile__link link {{ class }}" href="{{ href }}">{{ text }}</a>
-          </li>
-        {{/each}}
+        {{{link-settings-change-data}}}
+        {{{link-settings-change-password}}}
+        {{{link-sign-in}}}
       </ul>
     </div>
   </div>

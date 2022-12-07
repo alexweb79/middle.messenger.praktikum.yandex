@@ -30,7 +30,7 @@ export class Block {
 
   public _children;
 
-  public constructor(tagName: string = 'div', propsAndChild: Props) {
+  public constructor(tagName: string = 'div', propsAndChild: Props = {}) {
     const { children, props } = this.getChildren(propsAndChild);
 
     this._eventBus = new EventBus();
@@ -55,7 +55,7 @@ export class Block {
   }
 
   init() {
-    this._element = this.createDocumentElement(this._meta?.tagName);
+    this._createResources()
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -201,6 +201,7 @@ export class Block {
 
   makePropsProxy(props: Props) {
     // @ts-ignore
+    const self = this;
     return new Proxy(props, {
 
       get(target: Props, prop: string) {
@@ -210,7 +211,7 @@ export class Block {
 
       set(target: Props, prop: string, value: any) {
         target[prop] = value;
-        this._eventBus.emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
+        self._eventBus.emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
 

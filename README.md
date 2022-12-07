@@ -16,3 +16,13 @@
 - `npm run dev` — запуск версии для разработчика,
 - `npm run build` — сборка стабильной версии,
 - `npm run start` — запуск версии для пользователя.
+- `npm run test` - запуск тестов
+
+## Использованные инструменты
+- parcel
+- handlebars
+- scss
+- typescript
+- eslint
+- stylelint
+- mocha + chai
