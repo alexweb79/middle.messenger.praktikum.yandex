@@ -17,6 +17,7 @@ import {ChatList} from "../../components/Chat/ChatList/ChatList";
 import WSTransport from "../../api/ChatsWebSocketAPI";
 import {ChatBox} from "../../components/Chat/ChatBox/ChatBox";
 import {isEqual} from "../../utils/isEqual";
+import {ModalUploadAvatarChat} from "../../components/Modal/ModalUploadAvatarChat/ModalUploadAvatarChat";
 
 export class ChatPage extends Block {
   constructor(...propsAndChild: Props[]) {
@@ -48,6 +49,17 @@ export class ChatPage extends Block {
             e.preventDefault();
             e.stopPropagation();
             chatPage.openModalRemoveChat()
+          },
+        },
+      }),
+      'button-open-modal-upload-avatar-chat': new Button('button', {
+        attr: { class: 'button button-primary', type: 'button', style: 'display:block;margin: 5px auto 10px;' },
+        text: 'Изменить аватар чата',
+        events: {
+          click: (e: Event) => {
+            e.preventDefault();
+            e.stopPropagation();
+            chatPage.openModalUploadAvatarChat()
           },
         },
       }),
@@ -88,6 +100,16 @@ export class ChatPage extends Block {
             e.preventDefault();
             e.stopPropagation();
             chatPage.closeModalDeleteUserFromChat();
+          },
+        },
+      }),
+      'modal-upload-avatar-chat': new ModalUploadAvatarChat({
+        attr: { class: 'modal__wrap', title: 'chat id' },
+        events: {
+          click: (e: Event) => {
+            e.preventDefault();
+            e.stopPropagation();
+            chatPage.closeModalUploadAvatarChat();
           },
         },
       }),
@@ -166,7 +188,6 @@ export class ChatPage extends Block {
     await ChatController.getChats(data).then(chats => {
       this._children['chat-list']._props.chats = [...this._children['chat-list']._props.chats, ...chats]
     })
-
   }
 
   getChatUsers(data: ChatUsersData) {
@@ -196,6 +217,11 @@ export class ChatPage extends Block {
     ChatController.deleteChatById(data).then(chats => console.log('deleteChatById: ', chats))
   }
 
+  uploadAvatarChat(data: FormData) {
+    console.log('uploadAvatarChat data: ', data)
+    ChatController.uploadChatAvatar(data).then(res => console.log('uploadChatAvatar: ', res))
+  }
+
   openModalCreateChat() {
     this._children['modal-create-chat']._element.classList.add('active');
   }
@@ -222,6 +248,13 @@ export class ChatPage extends Block {
   }
   closeModalDeleteUserFromChat() {
     this._children['modal-delete-user-from-chat']._element.classList.remove('active');
+  }
+
+  openModalUploadAvatarChat() {
+    this._children['modal-upload-avatar-chat']._element.classList.add('active');
+  }
+  closeModalUploadAvatarChat() {
+    this._children['modal-upload-avatar-chat']._element.classList.remove('active');
   }
 
   render() {

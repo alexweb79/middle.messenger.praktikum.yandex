@@ -1,4 +1,5 @@
 import ChatAPI, {ChatsData, ChatUsersData, UserToChatData} from "../api/ChatAPI";
+import Store from "../services/Store/Store";
 
 class ChatController {
 
@@ -79,6 +80,20 @@ class ChatController {
       }
     } catch (error) {
       console.error('ChatController.deleteChatById error: ', error.message,)
+    }
+  }
+
+  public async uploadChatAvatar(data: FormData) {
+    try {
+      const res = await ChatAPI.uploadChatAvatarApi(data);
+      if (res.status === 200) {
+        await Store.setState('user', JSON.parse(res.response));
+        return JSON.parse(res.response);
+      } else {
+        throw new Error(JSON.parse(res.response).reason)
+      }
+    } catch (error) {
+      console.error('ChatController.uploadChatAvatar error: ', error.message,)
     }
   }
 

@@ -1,3 +1,5 @@
+import {queryStringify} from "../utils/queryStringify";
+
 enum Method {
   Get = 'GET',
   Post = 'POST',
@@ -17,6 +19,7 @@ type Options = {
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>
 
 export class HTTPTransport {
   static apiUrl: string = 'https://ya-praktikum.tech/api/v2';
@@ -26,21 +29,21 @@ export class HTTPTransport {
     this._endPoint = HTTPTransport.apiUrl + endPoint;
   }
 
-  public get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Get }, options.timeout);
-  }
+  public get: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: Method.Get}, options.timeout)
+  )
 
-  public post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Post }, options.timeout);
-  }
+  public post: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Post }, options.timeout)
+  )
 
-  public put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Put }, options.timeout);
-  }
+  public put: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Put }, options.timeout)
+  )
 
-  public delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Delete }, options.timeout);
-  }
+  public delete: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Delete }, options.timeout)
+  )
 
   private request(url: string, options: Options = { method: Method.Get }, timeout: number = 5000): Promise<XMLHttpRequest> {
     const { method, data, headers } = options;
@@ -69,8 +72,10 @@ export class HTTPTransport {
       xhr.timeout = timeout;
       xhr.withCredentials = true;
 
-      if (method === Method.Get || !data) {
+      if (method === Method.Get && !data) {
         xhr.send();
+      } else if ( method === Method.Get ) {
+        xhr.send(queryStringify(data));
       } else {
         xhr.send(options.data instanceof FormData ? data : JSON.stringify(data));
       }

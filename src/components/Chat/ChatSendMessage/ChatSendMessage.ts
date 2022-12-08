@@ -52,6 +52,13 @@ export class ChatSendMessage extends Block {
               e.preventDefault();
               e.stopPropagation();
             },
+            keypress: (e: KeyboardEvent) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                e.stopPropagation();
+                this.sendMessage();
+              }
+            }
           },
         },
       ),

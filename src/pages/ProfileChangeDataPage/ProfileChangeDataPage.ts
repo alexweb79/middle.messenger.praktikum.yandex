@@ -240,7 +240,7 @@ export class ProfileChangeDataPage extends Block {
   async sendUserProfile() {
     const data: any = {};
     let formValidate = true;
-    const inputs = document.querySelectorAll('input');
+    const inputs = document.querySelectorAll('.page-profile__data .profile__list input');
     inputs.forEach((input: HTMLInputElement) => {
       if (input.value && !input.dataset.noValidate) {
         data[input.name] = input.value;

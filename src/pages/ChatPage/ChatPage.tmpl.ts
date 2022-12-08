@@ -7,9 +7,11 @@ const chatPageTmpl = `
         {{{ chat-search }}}
         {{{ button-open-modal-create-chat }}}
         {{{ button-open-modal-remove-chat }}}
+        {{{ button-open-modal-upload-avatar-chat }}}
         {{{ chat-list }}}
         {{{ modal-create-chat }}}
         {{{ modal-remove-chat }}}
+        {{{ modal-upload-avatar-chat }}}
       </div>
     </div>
     <div class="page-chat__chat">
