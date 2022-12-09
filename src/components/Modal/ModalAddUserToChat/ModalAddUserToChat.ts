@@ -67,7 +67,6 @@ export class ModalAddUserToChat extends Block {
     // @ts-ignore
     users.push(Number(this._element.querySelector('input[name="userId"]').value))
     const chatId = Number( await Store.getState().currentChatId);
-    console.log({users, chatId})
     chatPage.addUserToChat({users, chatId});
     this.closeModal();
   }

@@ -5,7 +5,7 @@ const chatListTmpl = `
       <div class="chat-items__chat-item" data-id="{{ id }}" data-created-by="{{ created_by }}">
         <div class="chat-item">
           <div class="chat-item__col-left">
-            <div class="chat-item__avatar">{{#if avatar}}<img src="https://ya-praktikum.tech/api/v2/resources{{ avatar }}" alt="">{{/if}}</div>
+            <div class="chat-item__avatar">{{#if avatar}}<img src="{{ avatar }}" alt="">{{/if}}</div>
           </div>
           <div class="chat-item__col-right">
             <div class="chat-item__name">{{ title }}</div>

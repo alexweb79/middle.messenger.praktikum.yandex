@@ -7,8 +7,8 @@ class ChatController {
     try {
       const res = await ChatAPI.getChatsApi(data);
       if (res.status === 200) {
-        // const chats = JSON.parse(res.response);
-        // Store.setState('chats', chats);
+        const chats = JSON.parse(res.response);
+        Store.setState('chats', chats);
         return JSON.parse(res.response);
       } else {
         throw new Error(JSON.parse(res.response).reason)

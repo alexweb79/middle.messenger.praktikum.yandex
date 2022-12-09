@@ -10,6 +10,8 @@ import Router from "../../services/Router/Router";
 import {Link} from "../../components/Link/Link";
 import {profilePage} from "./index";
 import {Avatar} from "../../components/Avatar/Avatar";
+import {profileChangeDataPage} from "../ProfileChangeDataPage";
+import {passwordChangePage} from "../PasswordChangePage";
 
 export class ProfilePage extends Block {
   constructor(...propsAndChild: Props[]) {
@@ -47,6 +49,7 @@ export class ProfilePage extends Block {
             e.preventDefault();
             e.stopPropagation();
             Router.go('/settings-change-data')
+            profileChangeDataPage.getUserInfo();
           },
         },
       }),
@@ -57,6 +60,7 @@ export class ProfilePage extends Block {
             e.preventDefault();
             e.stopPropagation();
             Router.go('/settings-change-password')
+            passwordChangePage.getUserInfo();
           },
         },
       }),
@@ -72,7 +76,8 @@ export class ProfilePage extends Block {
       }),
     });
 
-    AuthController.getUserInfo();
+    AuthController.getUserInfo()
+    this.getUserInfo();
 
     let prevState: any = Store.getState();
     Store.on(StoreEvents.Updated, () => {
@@ -83,20 +88,17 @@ export class ProfilePage extends Block {
       prevState = stateProps;
       this.setProps({...stateProps});
     });
-
-    this.getUserInfo();
-
   }
 
   async getUserInfo() {
     if (!Store.getState().user) {
-      await authController.getUserInfo()
+      await AuthController.getUserInfo()
     }
     const userData = Store.getState().user;
     const inputs = this._props.items;
     if (userData) {
       // @ts-ignore
-      this._children.avatar._props.src = 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar;
+      this._children.avatar._props.src = userData.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar : userData.avatar;
       this._children.avatar._props.changeButton = false;
       // @ts-ignore
       this._props.title = userData.display_name;
@@ -109,14 +111,15 @@ export class ProfilePage extends Block {
         }
       })
     }
+    this.dispatchComponentDidMount();
   }
 
   logout() {
     authController.logout();
   }
 
-  init() {
-      super.init();
+  async init() {
+    super.init();
   }
 
   render() {

@@ -29,11 +29,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   Router
     .use('/', loginPage)
     .use('/sign-up', registrationPage)
+    .use('/404', notFoundPage)
+    .use('/500', serverErrorPage)
     .use('/messenger', chatPage)
     .use('/settings', profilePage)
     .use('/settings-change-data', profileChangeDataPage)
     .use('/settings-change-password', passwordChangePage)
-    .use('/404', notFoundPage)
-    .use('/500', serverErrorPage)
     .start();
 })

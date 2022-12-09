@@ -189,6 +189,9 @@ export class ChatPage extends Block {
       if (chats) {
         this._children['chat-list']._props.chats = [...this._children['chat-list']._props.chats, ...chats]
       }
+      this._children['chat-list']._props.chats.forEach((chat: any) => {
+        chat.avatar = chat.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + chat.avatar : chat.avatar;
+      })
     })
   }
 
@@ -220,7 +223,6 @@ export class ChatPage extends Block {
   }
 
   uploadAvatarChat(data: FormData) {
-    console.log('uploadAvatarChat data: ', data)
     ChatController.uploadChatAvatar(data).then(res => console.log('uploadChatAvatar: ', res))
   }
 
