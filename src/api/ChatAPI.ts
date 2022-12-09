@@ -48,8 +48,9 @@ class ChatAPI extends BaseAPI {
     return this.HTTP.delete('/', { data });
   }
 
-
-
+  public uploadChatAvatarApi(data: FormData) {
+    return this.HTTP.put('/chats/avatar', { data });
+  }
 
   public addUserToChatApi(data: UserToChatData) {
     return this.HTTP.put('/users', { data });
