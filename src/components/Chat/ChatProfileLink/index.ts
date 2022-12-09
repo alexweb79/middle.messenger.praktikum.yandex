@@ -1,6 +1,7 @@
 import {ChatProfileLink} from "./ChatProfileLink";
 import {SvgArrowSeagull} from "../../icons/SvgArrowSeagull/SvgArrowSeagull";
 import Router from "../../../services/Router/Router";
+import {profilePage} from "../../../pages/ProfilePage";
 
 export const chatProfileLink = new ChatProfileLink(
   'div',
@@ -11,6 +12,7 @@ export const chatProfileLink = new ChatProfileLink(
       click: (e: Event) => {
         e.preventDefault();
         e.stopPropagation();
+        profilePage.getUserInfo();
         Router.go('/settings');
       },
     },

@@ -12,7 +12,6 @@ import AuthController from "../../controllers/AuthController";
 import UserController from "../../controllers/UserController";
 import Router from "../../services/Router/Router";
 import Store, {StoreEvents} from "../../services/Store/Store";
-import authController from "../../controllers/AuthController";
 
 export class PasswordChangePage extends Block {
   constructor(...propsAndChild: Props[]) {
@@ -108,7 +107,7 @@ export class PasswordChangePage extends Block {
       }),
     })
 
-    AuthController.getUserInfo();
+    this.getUserInfo();
 
     let prevState: any = Store.getState();
     Store.on(StoreEvents.Updated, () => {
@@ -120,18 +119,16 @@ export class PasswordChangePage extends Block {
       this.setProps({...stateProps});
     });
 
-    this.getUserInfo();
-
   }
 
   async getUserInfo() {
     if (!Store.getState().user) {
-      await authController.getUserInfo()
+      await AuthController.getUserInfo()
     }
     const userData = Store.getState().user;
     if (userData) {
       // @ts-ignore
-      this._children.avatar._props.src = 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar;
+      this._children.avatar._props.src = userData.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar : userData.avatar;
       this._children.avatar._props.changeButton = false;
     }
     this.dispatchComponentDidMount();
@@ -159,7 +156,7 @@ export class PasswordChangePage extends Block {
   }
 
   init() {
-      super.init();
+    super.init();
   }
 
   render() {

@@ -3,7 +3,6 @@ import profileChangeDataPageTmpl from './ProfileChangeDataPage.tmpl';
 import AuthController from "../../controllers/AuthController";
 import Store, {StoreEvents} from "../../services/Store/Store";
 import {isEqual} from "../../utils/isEqual";
-import authController from "../../controllers/AuthController";
 import {Label} from "../../components/Label/Label";
 import {LinkArrow} from "../../components/LinkArrow/LinkArrow";
 import {SvgArrow} from "../../components/icons/SvgArrow/SvgArrow";
@@ -193,7 +192,7 @@ export class ProfileChangeDataPage extends Block {
       }),
     });
 
-    AuthController.getUserInfo();
+    this.getUserInfo();
 
     let prevState: any = Store.getState();
     Store.on(StoreEvents.Updated, () => {
@@ -205,7 +204,6 @@ export class ProfileChangeDataPage extends Block {
       this.setProps({...stateProps});
     });
 
-    this.getUserInfo();
   }
 
   init() {
@@ -214,14 +212,14 @@ export class ProfileChangeDataPage extends Block {
 
   async getUserInfo() {
     if (!Store.getState().user) {
-      await authController.getUserInfo()
+      await AuthController.getUserInfo()
     }
     const userData = Store.getState().user;
     const inputs = this._children;
 
     if (userData) {
       // @ts-ignore
-      this._children.avatar._props.src = 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar;
+      this._children.avatar._props.src = userData.avatar ? 'https://ya-praktikum.tech/api/v2/resources' + userData.avatar : userData.avatar;
     }
 
     if ((userData && Object.keys(userData).length !== 0) && (inputs && Object.keys(inputs).length !== 0)) {

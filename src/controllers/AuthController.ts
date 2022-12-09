@@ -29,7 +29,7 @@ class AuthController {
       }
     } catch (error) {
       console.error('AuthController.signIn error: ', error.message)
-      if (error.message === 'User already in system') {
+      if (error.message == 'User already in system') {
         Router.go('/messenger');
       }
     }
@@ -41,6 +41,7 @@ class AuthController {
       if (res.status === 200) {
         const user = JSON.parse(res.response);
         Store.setState('user', user);
+        return JSON.parse(res.response);
       } else {
         throw new Error(JSON.parse(res.response).reason)
       }

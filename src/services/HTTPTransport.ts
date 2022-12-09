@@ -52,7 +52,7 @@ export class HTTPTransport {
       const xhr = new XMLHttpRequest();
       xhr.open(method, this._endPoint + url);
 
-      if (!(options.data instanceof FormData)) {
+      if (!(data instanceof FormData)) {
         xhr.setRequestHeader('Content-Type', 'application/json');
       }
 
@@ -77,7 +77,7 @@ export class HTTPTransport {
       } else if ( method === Method.Get && data ) {
         xhr.send(queryStringify(data));
       } else {
-        xhr.send(options.data instanceof FormData ? data : JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   }
