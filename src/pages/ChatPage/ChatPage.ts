@@ -186,7 +186,9 @@ export class ChatPage extends Block {
     let data = { offset, limit, title }
 
     await ChatController.getChats(data).then(chats => {
-      this._children['chat-list']._props.chats = [...this._children['chat-list']._props.chats, ...chats]
+      if (chats) {
+        this._children['chat-list']._props.chats = [...this._children['chat-list']._props.chats, ...chats]
+      }
     })
   }
 

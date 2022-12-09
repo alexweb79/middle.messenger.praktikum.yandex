@@ -74,7 +74,7 @@ export class HTTPTransport {
 
       if (method === Method.Get && !data) {
         xhr.send();
-      } else if ( method === Method.Get ) {
+      } else if ( method === Method.Get && data ) {
         xhr.send(queryStringify(data));
       } else {
         xhr.send(options.data instanceof FormData ? data : JSON.stringify(data));
