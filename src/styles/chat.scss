@@ -8,6 +8,7 @@
     top: 0;
     left: 0;
     bottom: 0;
+    z-index: 1;
     width: 300px;
     background-color: $color-bg-light;
     border-right: 1px solid $color-bg-dark;
@@ -163,7 +164,7 @@
 
           &__date {
             position: absolute;
-            top: 3px;
+            top: -8px;
             right: 0;
             margin-left: auto;
             margin-right: 0;
@@ -266,6 +267,12 @@
         height: 25px;
         border-radius: 50%;
 
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .svg-elipsis {
           circle {
             fill: $color-primary;
@@ -357,9 +364,6 @@
           }
 
           &__info {
-            position: absolute;
-            right: 11px;
-            bottom: 11px;
             display: flex;
             justify-content: flex-end;
             align-items: baseline;
@@ -410,6 +414,12 @@
         padding: 0;
         border-radius: 50%;
 
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .svg-clip {
           path {
             fill: $color-primary;
@@ -455,6 +465,12 @@
 
       &__button {
         margin-left: 10px;
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

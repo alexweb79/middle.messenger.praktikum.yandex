@@ -1,6 +1,6 @@
 // language=hbs
 const passwordChangePageTmpl = `
-  {{{ button-arrow }}}
+  {{{ link-arrow }}}
   <div class="page-profile__data">
     <form class="form-profile profile" action="">
       <div class="profile__avatar">

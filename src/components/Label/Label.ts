@@ -2,6 +2,7 @@ import { Block, Props } from '../../services/Block';
 import labelTmpl from './Label.tmpl';
 
 export class Label extends Block {
+
   render() {
     return this.compile(labelTmpl);
   }
@@ -136,7 +137,9 @@ export class Label extends Block {
     this._element.querySelectorAll('input').forEach((input: HTMLInputElement) => {
       input.addEventListener('blur', (<Props>this)._props.events.blur);
       input.addEventListener('focus', (<Props>this)._props.events.blur);
+      input.addEventListener('keypress', (<Props>this)._props.events.keypress);
     });
     super.addEvents();
   }
+
 }

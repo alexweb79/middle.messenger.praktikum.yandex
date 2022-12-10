@@ -1,3 +1,5 @@
+import {queryStringify} from "../utils/queryStringify";
+
 enum Method {
   Get = 'GET',
   Post = 'POST',
@@ -17,30 +19,42 @@ type Options = {
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>
 
 export class HTTPTransport {
-  get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Get }, options.timeout);
+  static apiUrl: string = 'https://ya-praktikum.tech/api/v2';
+  protected _endPoint: string;
+
+  constructor(endPoint: string) {
+    this._endPoint = HTTPTransport.apiUrl + endPoint;
   }
 
-  post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Post }, options.timeout);
-  }
+  public get: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: Method.Get}, options.timeout)
+  )
 
-  put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Put }, options.timeout);
-  }
+  public post: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Post }, options.timeout)
+  )
 
-  delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Delete }, options.timeout);
-  }
+  public put: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Put }, options.timeout)
+  )
 
-  request(url: string, options: Options = { method: Method.Get }, timeout: number = 500): Promise<XMLHttpRequest> {
+  public delete: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Delete }, options.timeout)
+  )
+
+  private request(url: string, options: Options = { method: Method.Get }, timeout: number = 5000): Promise<XMLHttpRequest> {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, this._endPoint + url);
+
+      if (!(data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
 
       if (headers) {
         Object.keys(headers).forEach(key => {
@@ -56,12 +70,16 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
       xhr.timeout = timeout;
+      xhr.withCredentials = true;
 
-      if (method === Method.Get || !data) {
+      if (method === Method.Get && !data) {
         xhr.send();
+      } else if ( method === Method.Get && data ) {
+        xhr.send(queryStringify(data));
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   }
+
 }
