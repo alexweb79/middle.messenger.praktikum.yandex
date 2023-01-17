@@ -252,7 +252,7 @@ export class ProfileChangeDataPage extends Block {
   }
 
   async sendUserAvatar() {
-    let formData: FormData = new FormData();
+    const formData: FormData = new FormData();
     const input = document.querySelector('input[type="file"]') as HTMLInputElement;
     if (input) {
       if (!input.files) {

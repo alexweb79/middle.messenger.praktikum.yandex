@@ -27,7 +27,7 @@ export class ModalRemoveChat extends Block {
           errorText: 'Нужно id чат',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {

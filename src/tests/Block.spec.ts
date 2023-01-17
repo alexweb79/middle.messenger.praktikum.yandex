@@ -1,5 +1,5 @@
 import proxyquire = require('proxyquire');
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import sinon = require('sinon');
 
 const eventBusMock = {

@@ -27,7 +27,7 @@ export class ModalDeleteUserFromChat extends Block {
           errorText: 'нет id пользователя',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {
@@ -63,7 +63,7 @@ export class ModalDeleteUserFromChat extends Block {
   }
 
   async deleteUserFromChat() {
-    let users = [];
+    const users = [];
     // @ts-ignore
     users.push(Number(this._element.querySelector('input[name="userId"]').value))
     const chatId = Number( await Store.getState().currentChatId);

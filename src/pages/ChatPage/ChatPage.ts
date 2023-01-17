@@ -182,8 +182,8 @@ export class ChatPage extends Block {
     this._children['chat-box']._props.messages = [...this._children['chat-box']._props.messages, mess];
   }
 
-  async getChats(offset: number = 1, limit: number = 1, title: string = '') {
-    let data = { offset, limit, title }
+  async getChats(offset = 1, limit = 1, title = '') {
+    const data = { offset, limit, title }
 
     await ChatController.getChats(data).then(chats => {
       if (chats) {
@@ -212,7 +212,7 @@ export class ChatPage extends Block {
     ChatController.deleteUserFromChat(data).then(res => console.log('deleteUserFromChat: ', res))
   }
 
-  createChat(title: string = 'Новый чат') {
+  createChat(title = 'Новый чат') {
     const data = { title }
     ChatController.createChat(data).then(chats => console.log('createChat: ', chats))
   }

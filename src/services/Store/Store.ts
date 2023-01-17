@@ -18,15 +18,15 @@ class Store extends EventBus {
     // метод EventBus
     // this.emit(StoreEvents.Updated, this.getState());
     this.emit(StoreEvents.Updated);
-  };
+  }
 
   public getState() {
     return this.state;
-  };
+  }
 
   public clearState() {
     this.state = {};
-  };
+  }
 }
 
 export default new Store();

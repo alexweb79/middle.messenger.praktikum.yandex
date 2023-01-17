@@ -1,6 +1,7 @@
 import { Block, Props } from '../../services/Block';
 import labelTmpl from './Label.tmpl';
 
+/* eslint-disable no-useless-escape */
 export class Label extends Block {
 
   render() {
@@ -89,7 +90,7 @@ export class Label extends Block {
     } else {
       delete target.dataset.noValidate;
     }
-    if (target.name === 'first_name' || 'second_name') {
+    if (target.name === 'first_name' || target.name === 'second_name') {
       if (this.validateName(target.value)) {
         delete target.dataset.noValidate;
       } else {

@@ -22,7 +22,7 @@ type OptionsWithoutMethod = Omit<Options, 'method'>;
 type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>
 
 export class HTTPTransport {
-  static apiUrl: string = 'https://ya-praktikum.tech/api/v2';
+  static apiUrl = 'https://ya-praktikum.tech/api/v2';
   protected _endPoint: string;
 
   constructor(endPoint: string) {
@@ -45,7 +45,7 @@ export class HTTPTransport {
     this.request(url, { ...options, method: Method.Delete }, options.timeout)
   )
 
-  private request(url: string, options: Options = { method: Method.Get }, timeout: number = 5000): Promise<XMLHttpRequest> {
+  private request(url: string, options: Options = { method: Method.Get }, timeout = 5000): Promise<XMLHttpRequest> {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {

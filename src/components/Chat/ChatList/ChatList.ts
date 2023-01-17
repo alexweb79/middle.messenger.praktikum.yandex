@@ -11,7 +11,7 @@ export class ChatList extends Block {
       chats: [],
       events: {
         click: (e: Event) => {
-          let t = e.currentTarget
+          const t = e.currentTarget
           e.preventDefault();
           e.stopPropagation();
           if (t) {

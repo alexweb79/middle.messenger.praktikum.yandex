@@ -27,7 +27,7 @@ export class ModalUploadAvatarChat extends Block {
           errorText: 'Нужно id чат',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {
@@ -89,7 +89,7 @@ export class ModalUploadAvatarChat extends Block {
       }
       // @ts-ignore
       const chatId = this._element.querySelector('input[name="chatId"]').value;
-      let formData: FormData = new FormData();
+      const formData: FormData = new FormData();
       await formData.set('chatId', chatId);
       await formData.set('avatar', input.files[0]);
 

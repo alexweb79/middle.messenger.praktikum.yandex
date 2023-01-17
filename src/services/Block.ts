@@ -30,7 +30,7 @@ export class Block {
 
   public _children;
 
-  public constructor(tagName: string = 'div', propsAndChild: Props = {}) {
+  public constructor(tagName = 'div', propsAndChild: Props = {}) {
     const { children, props } = this.getChildren(propsAndChild);
 
     this._eventBus = new EventBus();
@@ -60,8 +60,7 @@ export class Block {
   }
 
   createDocumentElement(tagName: string) {
-    let element;
-    element = document.createElement(tagName);
+    const element = document.createElement(tagName);
     if (this._props.__id) {
       element.setAttribute('data-id', this._id.toString());
     }

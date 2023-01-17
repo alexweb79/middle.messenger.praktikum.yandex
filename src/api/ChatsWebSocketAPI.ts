@@ -5,7 +5,7 @@ export class ChatsWebSocketAPI {
   protected _WS: any;
   protected _timer: NodeJS.Timeout;
 
-  public startWS(userId: string = '', chatId: string = '', token: string = '') {
+  public startWS(userId = '', chatId = '', token = '') {
     this._endPoint = 'wss://ya-praktikum.tech/ws/chats/' + `${userId}/${chatId}/${token}/`;
     this._WS = new WebSocket(this._endPoint);
     this.message();
@@ -23,7 +23,7 @@ export class ChatsWebSocketAPI {
 
   public message() {
     this._WS.addEventListener('message', (e: MessageEvent) => {
-      let data = JSON.parse(e.data);
+      const data = JSON.parse(e.data);
       if (data) {
         if (Array.isArray(data)) {
           Store.setState('messages', data.reverse());
@@ -71,7 +71,7 @@ export class ChatsWebSocketAPI {
     }
   }
 
-  public getOldMessages(count: string = '0'): void {
+  public getOldMessages(count = '0'): void {
     this._WS.send(JSON.stringify({
         content: count,
         type: 'get old',

@@ -27,7 +27,7 @@ export class ModalCreateChat extends Block {
           errorText: 'Нужно назвать чат',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {

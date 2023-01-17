@@ -1,4 +1,4 @@
-import {isArrayOrObject} from "./isArrayOrObject"
+import {isArrayOrObject} from './isArrayOrObject'
 
 type PlainObject<T = any> = {
   [k in string]: T;
