@@ -4,7 +4,7 @@ import {Button} from "../../Button/Button";
 import {Label} from "../../Label/Label";
 import {ModalOverflow} from "../ModalOverflow/ModalOverflow";
 import {chatPage} from "../../../pages/ChatPage";
-import Store, {StoreEvents} from "../../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../../services/Store/Store";
 import {isEqual} from "../../../utils/isEqual";
 import {label} from "../../Label";
 
@@ -51,7 +51,7 @@ export class ModalAddUserToChat extends Block {
       modalOverflow: new ModalOverflow(),
     });
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {

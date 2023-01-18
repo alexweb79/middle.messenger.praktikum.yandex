@@ -1,4 +1,4 @@
-import {getKey} from "../utils/getKey";
+import {getKey} from "./getKey";
 import {describe} from "mocha";
 import {expect} from "chai";
 

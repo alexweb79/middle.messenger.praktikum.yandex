@@ -1,8 +1,8 @@
-import Router from '../services/Router/Router';
+import Router from './Router';
 import {beforeEach, after, describe} from 'mocha';
 import {expect} from 'chai';
 import sinon = require("sinon");
-import {Block} from "../services/Block";
+import {Block} from "../Block";
 
 window.history.forward = () => {}
 

@@ -1,6 +1,6 @@
 import {Block, Props} from '../../../services/Block';
 import chatListTmpl from './ChatList.tmpl';
-import Store, {StoreEvents} from "../../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../../services/Store/Store";
 import {isEqual} from "../../../utils/isEqual";
 import {chatPage} from "../../../pages/ChatPage";
 
@@ -25,7 +25,7 @@ export class ChatList extends Block {
       },
     })
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {

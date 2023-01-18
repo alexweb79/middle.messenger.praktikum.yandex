@@ -2,7 +2,7 @@ import {Block, Props} from '../../../services/Block';
 import modalRemoveChatTmpl from './ModalRemoveChat.tmpl';
 import {Button} from "../../Button/Button";
 import {Label} from "../../Label/Label";
-import Store, {StoreEvents} from "../../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../../services/Store/Store";
 import {isEqual} from "../../../utils/isEqual";
 import {ModalOverflow} from "../ModalOverflow/ModalOverflow";
 import {chatPage} from "../../../pages/ChatPage";
@@ -51,7 +51,7 @@ export class ModalRemoveChat extends Block {
       modalOverflow: new ModalOverflow(),
     });
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {

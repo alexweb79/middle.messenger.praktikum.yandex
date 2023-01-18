@@ -1,4 +1,4 @@
-import {HTTPTransport} from "../services/HTTPTransport";
+import {HTTPTransport} from "./HTTPTransport";
 import {describe} from 'mocha';
 import {expect} from 'chai';
 

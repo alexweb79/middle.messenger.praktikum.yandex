@@ -1,4 +1,4 @@
-import {Link} from "../components/Link/Link";
+import {Link} from "./Link";
 import {describe} from "mocha";
 
 describe('component Link', function() {

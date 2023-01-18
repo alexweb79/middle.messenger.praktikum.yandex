@@ -12,7 +12,7 @@ import {ModalRemoveChat} from "../../components/Modal/ModalRemoveChat/ModalRemov
 import {chatPage} from "./index";
 import {ModalDeleteUserFromChat} from "../../components/Modal/ModalDeleteUserFromChat/ModalDeleteUserFromChat";
 import {ModalAddUserToChat} from "../../components/Modal/ModalAddUserToChat/ModalAddUserToChat";
-import Store, {StoreEvents} from "../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../services/Store/Store";
 import {ChatList} from "../../components/Chat/ChatList/ChatList";
 import WSTransport from "../../api/ChatsWebSocketAPI";
 import {ChatBox} from "../../components/Chat/ChatBox/ChatBox";
@@ -117,9 +117,9 @@ export class ChatPage extends Block {
 
     this.getChats(100, 100, 'getChats title');
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
-      const stateProps: any = Store.getState();
+      const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {
         return
       }

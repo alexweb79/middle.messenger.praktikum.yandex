@@ -1,7 +1,7 @@
 import {Block, Props} from '../../services/Block';
 import profileChangeDataPageTmpl from './ProfileChangeDataPage.tmpl';
 import AuthController from "../../controllers/AuthController";
-import Store, {StoreEvents} from "../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../services/Store/Store";
 import {isEqual} from "../../utils/isEqual";
 import {Label} from "../../components/Label/Label";
 import {LinkArrow} from "../../components/LinkArrow/LinkArrow";
@@ -194,7 +194,7 @@ export class ProfileChangeDataPage extends Block {
 
     this.getUserInfo();
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {
