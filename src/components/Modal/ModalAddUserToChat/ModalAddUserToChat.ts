@@ -4,7 +4,7 @@ import {Button} from "../../Button/Button";
 import {Label} from "../../Label/Label";
 import {ModalOverflow} from "../ModalOverflow/ModalOverflow";
 import {chatPage} from "../../../pages/ChatPage";
-import Store, {StoreEvents} from "../../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../../services/Store/Store";
 import {isEqual} from "../../../utils/isEqual";
 import {label} from "../../Label";
 
@@ -27,7 +27,7 @@ export class ModalAddUserToChat extends Block {
           errorText: 'нет id пользователя',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {
@@ -51,7 +51,7 @@ export class ModalAddUserToChat extends Block {
       modalOverflow: new ModalOverflow(),
     });
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {
@@ -63,7 +63,7 @@ export class ModalAddUserToChat extends Block {
   }
 
   async addUserToChat() {
-    let users = [];
+    const users = [];
     // @ts-ignore
     users.push(Number(this._element.querySelector('input[name="userId"]').value))
     const chatId = Number( await Store.getState().currentChatId);

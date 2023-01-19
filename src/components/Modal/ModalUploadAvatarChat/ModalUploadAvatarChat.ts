@@ -2,7 +2,7 @@ import {Block, Props} from '../../../services/Block';
 import modalUploadAvatarChatTmpl from './ModalUploadAvatarChat.tmpl';
 import {Button} from "../../Button/Button";
 import {Label} from "../../Label/Label";
-import Store, {StoreEvents} from "../../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../../services/Store/Store";
 import {isEqual} from "../../../utils/isEqual";
 import {ModalOverflow} from "../ModalOverflow/ModalOverflow";
 import {label} from "../../Label";
@@ -27,7 +27,7 @@ export class ModalUploadAvatarChat extends Block {
           errorText: 'Нужно id чат',
           events: {
             blur: (e: Event) => {
-              let t = e.target
+              const t = e.target
               e.preventDefault();
               e.stopPropagation();
               if (t) {
@@ -70,7 +70,7 @@ export class ModalUploadAvatarChat extends Block {
       modalOverflow: new ModalOverflow(),
     });
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {
@@ -89,7 +89,7 @@ export class ModalUploadAvatarChat extends Block {
       }
       // @ts-ignore
       const chatId = this._element.querySelector('input[name="chatId"]').value;
-      let formData: FormData = new FormData();
+      const formData: FormData = new FormData();
       await formData.set('chatId', chatId);
       await formData.set('avatar', input.files[0]);
 

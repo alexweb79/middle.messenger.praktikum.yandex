@@ -1,7 +1,7 @@
 import {Block, Props} from '../../services/Block';
 import profilePageTmpl from './ProfilePage.tmpl';
 import authController from "../../controllers/AuthController";
-import Store, {StoreEvents} from "../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../services/Store/Store";
 import AuthController from "../../controllers/AuthController";
 import {isEqual} from "../../utils/isEqual";
 import {LinkArrow} from "../../components/LinkArrow/LinkArrow";
@@ -79,7 +79,7 @@ export class ProfilePage extends Block {
     AuthController.getUserInfo()
     this.getUserInfo();
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {

@@ -1,6 +1,6 @@
 import {Block} from '../../services/Block';
 import loginPageTmpl from './LoginPage.tmpl';
-import authController from "../../controllers/AuthController";
+import authController from '../../controllers/AuthController';
 
 export class LoginPage extends Block {
 

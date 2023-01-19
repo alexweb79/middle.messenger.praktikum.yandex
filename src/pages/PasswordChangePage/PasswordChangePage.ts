@@ -11,7 +11,7 @@ import {passwordChangePage} from "./index";
 import AuthController from "../../controllers/AuthController";
 import UserController from "../../controllers/UserController";
 import Router from "../../services/Router/Router";
-import Store, {StoreEvents} from "../../services/Store/Store";
+import Store, {Indexed, StoreEvents} from "../../services/Store/Store";
 
 export class PasswordChangePage extends Block {
   constructor(...propsAndChild: Props[]) {
@@ -109,7 +109,7 @@ export class PasswordChangePage extends Block {
 
     this.getUserInfo();
 
-    let prevState: any = Store.getState();
+    let prevState: Indexed = Store.getState();
     Store.on(StoreEvents.Updated, () => {
       const stateProps = Store.getState();
       if (isEqual(prevState, stateProps)) {

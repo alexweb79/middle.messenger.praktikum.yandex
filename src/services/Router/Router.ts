@@ -40,6 +40,11 @@ class Router {
     this._onRoute(window.location.pathname);
   }
 
+  public reset() {
+    this.routes = []
+    this._currentRoute = null
+  }
+
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {
@@ -60,11 +65,11 @@ class Router {
     this._onRoute(pathname);
   }
 
-  back() {
+  public back() {
     this.history.back();
   }
 
-  forward() {
+  public forward() {
     this.history.forward();
   }
 

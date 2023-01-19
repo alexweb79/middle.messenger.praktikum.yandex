@@ -7,6 +7,7 @@ import {profileChangeDataPage} from './pages/ProfileChangeDataPage';
 import {profilePage} from './pages/ProfilePage';
 import {passwordChangePage} from './pages/PasswordChangePage';
 import {chatPage} from './pages/ChatPage';
+import './index.scss';
 
 // import {DefaultLayout} from './layout/DefaultLayout/DefaultLayout';
 // const defaultLayout = new DefaultLayout(
